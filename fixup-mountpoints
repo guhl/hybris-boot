@@ -130,7 +130,7 @@ case "$DEVICE" in
             -e 's block/platform/msm_sdcc.1/by-name/userdata mmcblk0p28 ' \
             "$@"
         ;;
-    "ace")
+    "ace"|"vision")
        sed -i \
             -e 's block/platform/msm_sdcc.2/by-num/p25 mmcblk0p25 ' \
             -e 's block/platform/msm_sdcc.2/by-num/p26 mmcblk0p26 ' \

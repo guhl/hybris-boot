@@ -90,6 +90,7 @@ export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 USB_FUNCTIONS=rndis
 
 ANDROID_USB=/sys/class/android_usb/android0
+ANDROID_RNDIS=/sys/class/android_usb/android0/f_rndis
 LOCAL_IP=192.168.2.15
 
 DONE_SWITCH=no
@@ -191,7 +192,8 @@ usb_setup() {
       write $ANDROID_USB/enable        0
       write $ANDROID_USB/functions     ""
       write $ANDROID_USB/enable        1
-      usleep 500000 # 0.5 delay to attempt to remove rndis function
+#      usleep 500000 # 0.5 delay to attempt to remove rndis function
+      sleep 1
       write $ANDROID_USB/enable        0
       write $ANDROID_USB/idVendor      18D1
       write $ANDROID_USB/idProduct     D001
@@ -200,6 +202,7 @@ usb_setup() {
       write $ANDROID_USB/iSerial       "$1"
       write $ANDROID_USB/functions     $USB_FUNCTIONS
       write $ANDROID_USB/enable        1
+      write $ANDROID_RNDIS/on          1
 }
 # This lets us communicate errors to host (if it needs disable/enable then that's a problem)
 usb_info() {
